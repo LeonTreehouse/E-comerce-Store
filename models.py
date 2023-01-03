@@ -12,7 +12,7 @@ class Customer(Base):
     full_name = Column(String)
     phone_number = Column(Integer)
     password = Column(String)
-    purchases = relationship("order", back_populates="customer",
+    orders = relationship("Order", back_populates="customers",
                             cascade="all, delete, delete-orphan")
 
 
@@ -23,11 +23,12 @@ class Customer(Base):
 
 class Order(Base):
     __tablename__ = 'orders'
+
     id = Column(Integer, primary_key=True)
     customer_id = Column(Integer, ForeignKey("customers.id"))
     product_quantity = Column(Integer)
-    customer = relationship("Customer", back_populates="order")
-    products = relationship("Product", back_populates="Order", cascade="all, delete, delete-orphan")
+    customers = relationship("Customer", back_populates="orders")
+    products = relationship("Product", back_populates="order", cascade="all, delete, delete-orphan")
 
     def __repr__(self):
         return f'Order Number: {self.id}\nProduct: {self.products}\nQuantity: {self.product_quantity}'
@@ -36,11 +37,11 @@ class Order(Base):
 class Product(Base):
     __tablename__ = 'products'
     
+    id = Column(Integer, primary_key=True)
     item_name = Column(String)
     order_id = Column(Integer, ForeignKey('orders.id'))
     quantity = Column(Integer)
-    order = relationship("Order", back_populates="product",
-                        cascade="all, delete, delete-orphan")
+    order = relationship("Order", back_populates="products")
 
     
     def __repr__(self):
