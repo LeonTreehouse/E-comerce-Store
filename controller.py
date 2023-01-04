@@ -26,7 +26,7 @@ class Authentication():
     @classmethod
     def password_is_valid(self, password):
         password_regex = r'([\W]*[\w]+[\d]+[!]*)'
-        if len(password) < 8 and not re.match(password_regex, password):
+        if len(password) > 8 and re.fullmatch(password_regex, password):
             return True
         else:
             return False
@@ -34,7 +34,22 @@ class Authentication():
 
     @classmethod
     def phonenumber_is_valid(self, phone_number):
-        phone_regex = r''
+        phone_regex = r'([\d]+)'
+        if re.fullmatch(phone_regex, phone_number):
+            return True
+        else:
+            return False
+    
+
+    @classmethod
+    def full_name_is_valid(self, full_name):
+        full_name_regex = r'[\w]+[\s]+[\w]+'
+        if re.fullmatch(full_name_regex, full_name):
+            return True
+        else:
+            return False
+
+
 
 
 
