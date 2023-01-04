@@ -39,8 +39,8 @@ class Authentication():
             return True
         else:
             return False
-    
 
+    
     @classmethod
     def full_name_is_valid(self, full_name):
         full_name_regex = r'[\w]+[\s]+[\w]+'
@@ -48,6 +48,39 @@ class Authentication():
             return True
         else:
             return False
+
+
+    @classmethod
+    def encrypt_password(self, password):
+        pass
+
+
+    @classmethod
+    def create_user(self, email, full_name, phone_number, password):
+        pass
+
+
+    @classmethod
+    def authenticate_user(self, email, password):
+        pass
+
+
+    @classmethod
+    def delete_user(self, id):
+        pass
+
+
+    @classmethod
+    def update_user_details(self, id, values):
+        pass
+
+
+    @classmethod
+    def get_user(self, id):
+        pass
+    
+
+ 
 
 
 
